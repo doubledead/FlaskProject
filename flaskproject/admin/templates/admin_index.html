@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block container %}
+    <div class="jumbotron">
+        <h1>Admin</h1>
+        {% if current_user.is_authenticated %}
+          <p>Hi, {{ current_user.email }}!
+        {% endif %}
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-md-3">User ID</div>
+      <div class="col-sm-9 col-md-9">Email</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">&nbsp;</div>
+    </div>
+    {% for data in users %}
+      <div class="row">
+        <div class="col-sm-3 col-md-3">{{data.id}}</div>
+        <div class="col-sm-3 col-md-9">{{data.email}}</div>
+      </div>
+    {% endfor %}
+{% endblock %}

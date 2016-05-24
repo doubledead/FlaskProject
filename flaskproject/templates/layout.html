@@ -1,0 +1,49 @@
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Flask Project</title>
+    <meta name="description" content="Flask App">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('home') }}">Flask App</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            {% if user.is_authenticated() %}
+              <li><a class="navbar-brand" href="/main">Main</a></li>
+            {% endif %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.has_role('admin') %}
+              <li><a class="navbar-brand" href="{{ url_for('admin.index') }}">Admin</a></li>
+            {% endif %}
+            {% if user.is_authenticated() %}
+              <li><a class="navbar-brand" href="/user">User</a></li>
+            {% endif %}
+            {% if not user.is_authenticated() %}
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Log In</a></li>
+              <li><a href="/register"><span class="glyphicon glyphicon-log-in"></span>Register</a></li>
+            {% else %}
+              <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% block container %}{% endblock %}
+    </div>
+    <footer class="footer"></footer>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+  </body>
+</html>
