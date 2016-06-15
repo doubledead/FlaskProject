@@ -10,8 +10,8 @@ This webapp requires these programs:
 
 - Python 2.7.*
 - pip
-- virtualenv
-- bower
+- Virtualenv
+- Bower
 
 [fl]: http://flask.pocoo.org/
 [fs]: https://github.com/mattupstate/flask-security

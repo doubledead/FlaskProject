@@ -1,4 +1,6 @@
-from flaskproject.data.models import db, Role, User
+from flaskproject import db
+#from flaskproject.data.models import db, Role, User
+from flaskproject.users.models import Role, User
 from flask_security import Security, SQLAlchemyUserDatastore
 import os
 import logging

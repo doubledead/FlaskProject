@@ -1,13 +1,15 @@
 from flask import abort, Flask, g, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 from flask_mail import Mail
 from flask_security import current_user
 from flaskproject.utils import get_instance_folder_path
-from flaskproject.main.controllers import main
-from flaskproject.admin.controllers import admin
-from flaskproject.user.controllers import user
+from flaskproject.main.views import main
+from flaskproject.admin.views import admin
+from flaskproject.users.views import user
+from flaskproject.events.views import mod as eventsModule
 from flaskproject.cache import cache
 from flaskproject.config import configure_app
-from flaskproject.data.models import db
 
 app = Flask(__name__,
             instance_path=get_instance_folder_path(),
@@ -16,6 +18,9 @@ app = Flask(__name__,
 
 configure_app(app)
 cache.init_app(app)
+
+#: Flask-SQLAlchemy extension instance
+db = SQLAlchemy()
 
 #: Flask-Mail extension instance
 mail = Mail()
@@ -52,3 +57,4 @@ def home():
 app.register_blueprint(main, url_prefix='/main')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(user, url_prefix='/user')
+app.register_blueprint(eventsModule, url_prefix='/events')

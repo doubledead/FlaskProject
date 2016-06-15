@@ -1,5 +1,6 @@
 from flaskproject import app
-from flaskproject.data.models import db
+#from flaskproject.data.models import db
+from flaskproject import db
 from flask_security.utils import encrypt_password
 
 def create_roles(data_store):

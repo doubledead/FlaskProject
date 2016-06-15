@@ -18,8 +18,9 @@
         </div>
         <div>
           <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href="/main">Main</a></li>
             {% if user.is_authenticated() %}
-              <li><a class="navbar-brand" href="/main">Main</a></li>
+              <li><a class="navbar-brand" href="/events">Events</a></li>
             {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">
