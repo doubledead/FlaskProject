@@ -60,3 +60,9 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# bower dependencies
+flaskproject/static/bower_components
+
+# IntelliJ IDEA IDE
+.idea/
