@@ -1,7 +1,7 @@
-from flaskproject import db
-#from flaskproject.data.models import db, Role, User
-from flaskproject.users.models import Role, User
-from flask_security import Security, SQLAlchemyUserDatastore
+# from flaskproject import db
+# from flaskproject.data.models import db, Role, User
+# from flaskproject.users.models import Role, User
+# from flask_security import Security, SQLAlchemyUserDatastore
 import os
 import logging
 
@@ -70,5 +70,5 @@ def configure_app(app):
     handler.setFormatter(formatter)
     app.logger.addHandler(handler)
     # Configure Security
-    user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-    app.security = Security(app, user_datastore)
+    # user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+    # app.security = Security(app, user_datastore)
