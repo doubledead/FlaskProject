@@ -2,10 +2,6 @@
 import os
 
 from flask import abort, Flask, g, render_template, request
-
-# from flask_mail import Mail
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_security import Security, SQLAlchemyUserDatastore, current_user
 from flask_security import SQLAlchemyUserDatastore, current_user
 
 from flaskproject.utils import get_instance_folder_path
@@ -16,8 +12,6 @@ from flaskproject.utils import get_instance_folder_path
 from flaskproject.cache import cache
 # from flaskproject.config import configure_app
 
-# from flaskproject.users.models import User, Role
-
 from .core import db, mail, security
 from .models import User, Role
 
@@ -26,17 +20,6 @@ app = Flask(__name__,
             instance_relative_config=True,
             template_folder='templates')
 
-#: Flask-SQLAlchemy extension instance
-# db = SQLAlchemy()
-
-#: Flask-Mail extension instance
-# mail = Mail()
-
-#: Flask-Security extension instance
-# security = Security()
-
-# The declaration and initialization instances will be
-# separated into different files soon.
 
 # configure_app(app)
 app.config.from_object('flaskproject.settings')
@@ -81,7 +64,10 @@ from flaskproject.main.views import main
 from flaskproject.admin.views import admin
 from flaskproject.users.views import user
 from flaskproject.events.views import mod as eventsModule
+from flaskproject.entries.views import entries
+
 app.register_blueprint(main, url_prefix='/main')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(user, url_prefix='/user')
 app.register_blueprint(eventsModule, url_prefix='/events')
+app.register_blueprint(entries, url_prefix='/entries')

@@ -1,7 +1,4 @@
-
-# from flaskproject import db
 from flask_security import UserMixin, RoleMixin
-
 from ..core import db
 
 roles_users = db.Table(

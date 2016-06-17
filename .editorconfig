@@ -33,6 +33,6 @@ indent_style = space
 indent_size = 2
 
 # HTML Files
-[**.html]
+[*.html]
 indent_style = space
 indent_size = 2

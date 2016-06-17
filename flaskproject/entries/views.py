@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template
 from flask import request, redirect, url_for, json, current_app
-from flaskproject import db
+from ..core import db
 from flask_security import login_required, current_user
-from flaskproject.entries.forms.entry_forms import CreateEntryForm
+from .forms import CreateEntryForm
 from flaskproject.cache import cache
-from flaskproject.entries.models import Entry
+from .models import Entry
+from sqlalchemy import exc
 
 entries = Blueprint('entries', __name__, template_folder='templates')
 
-@mod.route('/')
+@entries.route('/')
 @login_required
 def index():
     entries = [entry for entry in Entry.query.all()]
@@ -16,7 +17,7 @@ def index():
 
     return render_template('entries/entries.html')
 
-#@main.route('/entries/')
+@entries.route('/allentries/')
 @login_required
 @cache.cached(300)
 def display_entries():
@@ -25,7 +26,7 @@ def display_entries():
 
     return render_template("entries/entries.html", entries=entries)
 
-@main.route('/create', methods=['GET', 'POST'])
+@entries.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_entry():
     form = CreateEntryForm(request.form)
@@ -45,7 +46,7 @@ def create_entry():
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
-            return redirect(url_for('entries.create_entry'))
+            return redirect(url_for('entries'))
 
         return redirect(url_for('entries.display_entries'))
 
