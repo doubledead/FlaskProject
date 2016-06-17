@@ -1,14 +1,9 @@
 
 import os
-
 from flask import abort, Flask, g, render_template, request
 from flask_security import SQLAlchemyUserDatastore, current_user
 
 from flaskproject.utils import get_instance_folder_path
-# from flaskproject.main.views import main
-# from flaskproject.admin.views import admin
-# from flaskproject.users.views import user
-# from flaskproject.events.views import mod as eventsModule
 from flaskproject.cache import cache
 # from flaskproject.config import configure_app
 
@@ -25,7 +20,6 @@ app = Flask(__name__,
 app.config.from_object('flaskproject.settings')
 app.config.from_pyfile('config.cfg', silent=True)
 # app.config.from_object(settings_override)
-
 
 cache.init_app(app)
 

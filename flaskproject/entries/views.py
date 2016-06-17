@@ -15,9 +15,9 @@ def index():
     entries = [entry for entry in Entry.query.all()]
     current_app.logger.info('Displaying all entries.')
 
-    return render_template('entries/entries.html')
+    return render_template('entries/entries.html', entries=entries)
 
-@entries.route('/allentries/')
+@entries.route('/')
 @login_required
 @cache.cached(300)
 def display_entries():
