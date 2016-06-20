@@ -28,6 +28,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(120))
     active = db.Column(db.Boolean())
+    # Uncomment these when enabling user tracking
+    # https://pythonhosted.org/Flask-Security/models.html
     #confirmed_at = db.Column(db.DateTime())
     #last_login_at = db.Column(db.DateTime())
     #current_login_at = db.Column(db.DateTime())
