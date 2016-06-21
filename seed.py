@@ -1,5 +1,6 @@
 from flaskproject import app
 from flaskproject.core import db
+# from flaskproject.events.models import Event, Category
 from flask_security.utils import encrypt_password
 
 # def create_roles(data_store):
@@ -25,9 +26,19 @@ from flask_security.utils import encrypt_password
 #         data_store.commit()
 
 # data_store = app.security.datastore
+
+# def create_categories(db):
+#     category1 = Category('Meeting', 'meeting')
+#
+#     db.session.add(category1)
+#
+#     db.session.commit()
+
 with app.app_context():
     db.drop_all()
     db.create_all()
 
     # create_roles(data_store)
     # create_users(data_store)
+
+    # create_categories()
