@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/boilerplate.html' %}
 {% block container %}
     <div class="jumbotron">
         <h1>Entries</h1>
@@ -20,7 +20,7 @@
     <div class="row">
     	<div class="col-sm-3 col-md-1">{{data.id}}</div>
     	<div class="col-sm-3 col-md-1">{{data.user_id}}</div>
-        <div class="col-sm-3 col-md-3">{{data.pub_date}}</div>
+        <div class="col-sm-3 col-md-3">{{data.create_date}}</div>
     	<div class="col-sm-3 col-md-2">{{data.title}}</div>
 		<div class="col-sm-3 col-md-5">{{data.body}}</div>
     </div>

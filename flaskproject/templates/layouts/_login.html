@@ -12,13 +12,13 @@
   </head>
   <body>
     <nav class="navbar navbar-inverse">
-      {% include "nav.html" %}
+      {% include "layouts/_menu.html" %}
     </nav>
     <div class="container">
       {% block container %}{% endblock %}
     </div>
     <footer class="footer"></footer>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
   </body>
 </html>

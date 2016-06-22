@@ -1,0 +1,26 @@
+{% extends 'layouts/boilerplate.html' %}
+{% block container %}
+  <div class="jumbotron">
+    <h1>Profile Edit</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+  <div class="top-pad">
+    {% if current_user.is_authenticated %}
+      <form action="" method="POST" name="edit">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.email.label }} {{ form.email(size=20, class_='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }} {{ form.password(size=20, class_='form-control') }}
+        </div>
+        <input type="submit" value="Save" class="btn btn-sm btn-primary">
+      </form>
+    {% endif %}
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+{% endblock %}
