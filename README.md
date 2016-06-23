@@ -1,7 +1,7 @@
 # FlaskProject
 [Flask][fl] app using modular blueprints.
 
-Based off [overholt][oh].
+The structure is a combination of [Large app how to][la] and [overholt][oh].
 
 Features:
 
@@ -42,3 +42,4 @@ This webapp requires these programs:
 [fs]: https://github.com/mattupstate/flask-security
 [jj]: http://jinja.pocoo.org/
 [oh]: https://github.com/mattupstate/overholt
+[la]: https://github.com/pallets/flask/wiki/Large-app-how-to

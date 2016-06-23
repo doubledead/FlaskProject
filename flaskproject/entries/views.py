@@ -26,13 +26,50 @@ def display_entries():
 
     return render_template("entries/entries.html", entries=entries)
 
-@entries.route('/<entry_id>')
+@entries.route('/<entry_id>', methods=['GET', 'POST'])
 @login_required
 @cache.cached(300)
 def show(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
-    return render_template("entries/show.html", entry=entry)
+    form = UpdateEntryForm()
+    form.title.data = entry.title
+    form.body.data = entry.body
+
+    # return render_template("entries/show.html", entry=entry)
+    return render_template("entries/edit.html", entry=entry, form=form)
+
+@entries.route('/edit/<entry_id>', methods=['POST'])
+@login_required
+@cache.cached(300)
+def update(entry_id):
+    entry = Entry.query.filter_by(id=entry_id).first_or_404()
+
+    user_id = current_user.id
+    form = UpdateEntryForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        body = form.body.data
+        user_id = user_id
+        current_app.logger.info('Updating entry %s.', (title))
+        entry = Entry(title, body, user_id)
+
+        try:
+            db.session.add(entry)
+            # db.session.update(entry.get_or_404(entry_id))
+            # db.session.update(entry)
+            db.session.commit()
+            cache.clear()
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error(e)
+
+            return redirect(url_for('entries.show', entry_id=entry.id))
+    # else:
+    #     form.title.data = entry.title
+    #     form.body.data = entry.body
+        return redirect(url_for('entries.show', entry_id=entry.id))
+
+    # return render_template("entries/edit.html", entry=entry, form=form)
 
 @entries.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -59,3 +96,4 @@ def create_entry():
         return redirect(url_for('entries.display_entries'))
 
     return render_template("entries/create_entry.html", form=form)
+
