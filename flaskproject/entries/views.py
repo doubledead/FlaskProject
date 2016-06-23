@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask import request, redirect, url_for, json, current_app
 from ..core import db
 from flask_security import login_required, current_user
-from .forms import CreateEntryForm
+from .forms import CreateEntryForm, UpdateEntryForm
 from flaskproject.cache import cache
 from .models import Entry
 from sqlalchemy import exc
@@ -25,6 +25,14 @@ def display_entries():
     current_app.logger.info('Displaying all entries.')
 
     return render_template("entries/entries.html", entries=entries)
+
+@entries.route('/<entry_id>')
+@login_required
+@cache.cached(300)
+def show(entry_id):
+    entry = Entry.query.filter_by(id=entry_id).first_or_404()
+
+    return render_template("entries/show.html", entry=entry)
 
 @entries.route('/create', methods=['GET', 'POST'])
 @login_required
