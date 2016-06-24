@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="top-pad">
-        <form method="POST" action="{{ url_for('entries.update', entry_id=entry.id)}}">
+        <form method="POST" action="" name="update">
           {{ form.csrf_token }}
           <div class="form-group">
             {{ form.title.label }} {{ form.title(size=20, class_='form-control') }}

@@ -32,22 +32,22 @@ def display_entries():
 def show(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
-    form = UpdateEntryForm()
-    form.title.data = entry.title
-    form.body.data = entry.body
+    # form = UpdateEntryForm()
+    # form.title.data = entry.title
+    # form.body.data = entry.body
 
-    # return render_template("entries/show.html", entry=entry)
-    return render_template("entries/edit.html", entry=entry, form=form)
+    return render_template("entries/show.html", entry=entry)
+    # return render_template("entries/edit.html", entry=entry, form=form)
 
-@entries.route('/edit/<entry_id>', methods=['POST'])
+@entries.route('/edit/<entry_id>', methods=['GET', 'POST'])
 @login_required
-@cache.cached(300)
+# @cache.cached(300)
 def update(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
     user_id = current_user.id
     form = UpdateEntryForm()
-    if form.validate_on_submit():
+    if request.method == "POST" and form.validate_on_submit():
         title = form.title.data
         body = form.body.data
         user_id = user_id
@@ -59,17 +59,18 @@ def update(entry_id):
             # db.session.update(entry.get_or_404(entry_id))
             # db.session.update(entry)
             db.session.commit()
-            cache.clear()
+            # cache.clear()
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
-            return redirect(url_for('entries.show', entry_id=entry.id))
-    # else:
-    #     form.title.data = entry.title
-    #     form.body.data = entry.body
-        return redirect(url_for('entries.show', entry_id=entry.id))
+            # return redirect(url_for('entries.show', entry_id=entry.id))
+    else:
+        form.title.data = entry.title
+        form.body.data = entry.body
 
-    # return render_template("entries/edit.html", entry=entry, form=form)
+    return render_template("entries/edit.html", entry=entry, form=form)
+    # return render_template("entries/show.html", entry=entry)
+    # return render_template("entries/edit.html", form=form)
 
 @entries.route('/create', methods=['GET', 'POST'])
 @login_required

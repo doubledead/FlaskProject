@@ -25,9 +25,7 @@
     	<div class="col-sm-3 col-md-2">{{data.title}}</div>
 		  <div class="col-sm-3 col-md-4">{{data.body}}</div>
       <div class="col-sm-3 col-md-1">
-        <a href="{{ url_for('entries.show', entry_id=data.id) }}">
-          View
-        </a>
+        <a href="{{ url_for('entries.show', entry_id=data.id) }}">View</a>
       </div>
     </div>
     {% endfor %}

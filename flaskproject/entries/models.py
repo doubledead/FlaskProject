@@ -1,5 +1,7 @@
 from ..core import db
 from datetime import datetime
+from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
 
 class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,3 +20,14 @@ class Entry(db.Model):
 
     def __repr__(self):
       return '<Entry %r>' % self.title
+
+    def update(self):
+        return session_commit()
+
+def session_commit():
+    try:
+        db.session.commit()
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        reason=str(e)
+        return reason
