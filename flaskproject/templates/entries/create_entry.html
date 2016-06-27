@@ -24,7 +24,7 @@
       <div class="form-group">
         {{ form.body.label }} {{ form.body(size=20, class_='form-control') }}
       </div>
-      <input class="btn btn-sm btn-success" type="submit" value="Create">
+      <input type="submit" value="Create" class="btn btn-sm btn-success">
     </form>
   </div>
   <div class="row">
@@ -32,7 +32,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <a class="btn btn-xs btn-warning" href="{{ url_for('entries.display_entries') }}">
+      <a href="{{ url_for('entries.display_entries') }}" class="btn btn-xs btn-warning">
         Cancel
       </a>
     </div>

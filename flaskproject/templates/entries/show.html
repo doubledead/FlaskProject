@@ -21,7 +21,9 @@
     <div class="col-sm-3 col-md-2">{{entry.title}}</div>
     <div class="col-sm-3 col-md-4">{{entry.body}}</div>
     <div class="col-sm-3 col-md-1">
-      <a class="btn btn-xs btn-info" href="{{ url_for('entries.update', entry_id=entry.id) }}">Edit</a>
+      <a href="{{ url_for('entries.update', entry_id=entry.id) }}" class="btn btn-xs btn-info">
+        Edit
+      </a>
     </div>
   </div>
 {% endblock %}

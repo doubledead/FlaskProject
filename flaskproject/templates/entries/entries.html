@@ -4,7 +4,11 @@
         <h1>Entries</h1>
     </div>
     <div class="row">
-    	<p><a class="btn btn-sm btn-primary" href="{{ url_for('entries.create_entry') }}">Create Entry</a></p>
+    	<p>
+        <a href="{{ url_for('entries.create_entry') }}" class="btn btn-sm btn-primary">
+          Create Entry
+        </a>
+      </p>
     </div>
     <div class="row">
     	<div class="col-sm-3 col-md-1">ID</div>
@@ -25,7 +29,9 @@
     	<div class="col-sm-3 col-md-2">{{data.title}}</div>
 		  <div class="col-sm-3 col-md-4">{{data.body}}</div>
       <div class="col-sm-3 col-md-1">
-        <a class="btn btn-xs btn-info" href="{{ url_for('entries.show', entry_id=data.id) }}">View</a>
+        <a href="{{ url_for('entries.show', entry_id=data.id) }}" class="btn btn-xs btn-info">
+          View
+        </a>
       </div>
     </div>
     <div class="row">
