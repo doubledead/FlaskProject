@@ -36,7 +36,6 @@ def show(entry_id):
 
 @entries.route('/edit/<entry_id>', methods=['GET', 'POST'])
 @login_required
-# @cache.cached(300)
 def update(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
@@ -46,13 +45,12 @@ def update(entry_id):
         entry.title = form.title.data
         entry.body = form.body.data
         entry.user_id = user_id
-        current_app.logger.info('Updating entry %s.', (entry.title))
+        current_app.logger.info('Updating entry %s.', entry.title)
         # entry = Entry(title, body, user_id)
 
         try:
             # db.session.add(entry)
             db.session.commit()
-            # cache.clear()
             # return update(entry)
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
@@ -64,6 +62,27 @@ def update(entry_id):
         form.body.data = entry.body
 
     return render_template("entries/edit.html", entry=entry, form=form)
+
+@entries.route('/delete/<entry_id>', methods=['GET', 'POST'])
+@login_required
+def delete(entry_id):
+    entry = Entry.query.filter_by(id=entry_id).first_or_404()
+    user_id = current_user.id
+    if user_id == entry.user_id:
+        current_app.logger.info('Deleting entry %s.', entry.title)
+        try:
+            db.session.delete(entry)
+            db.session.commit()
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error(e)
+
+        return redirect(url_for('entries.display_entries'))
+
+    # db.session.delete(entry)
+    # db.session.commit()
+
+    return redirect(url_for('entries.display_entries'))
+
 
 @entries.route('/create', methods=['GET', 'POST'])
 @login_required

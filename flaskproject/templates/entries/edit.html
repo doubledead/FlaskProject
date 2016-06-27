@@ -26,11 +26,19 @@
           <div class="form-group">
             {{ form.body.label }} {{ form.body(size=20, class_='form-control') }}
           </div>
-          <input type="submit" value="Save">
+          <input class="btn btn-sm btn-success" type="submit" value="Save">
         </form>
       </div>
     </div>
     <div class="col-md-6">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-xs btn-danger" href="{{ url_for('entries.delete', entry_id=entry.id) }}">Delete Entry</a>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-12">&nbsp;</div>
