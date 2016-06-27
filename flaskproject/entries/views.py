@@ -32,12 +32,7 @@ def display_entries():
 def show(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
-    # form = UpdateEntryForm()
-    # form.title.data = entry.title
-    # form.body.data = entry.body
-
     return render_template("entries/show.html", entry=entry)
-    # return render_template("entries/edit.html", entry=entry, form=form)
 
 @entries.route('/edit/<entry_id>', methods=['GET', 'POST'])
 @login_required
@@ -48,29 +43,27 @@ def update(entry_id):
     user_id = current_user.id
     form = UpdateEntryForm()
     if request.method == "POST" and form.validate_on_submit():
-        title = form.title.data
-        body = form.body.data
-        user_id = user_id
-        current_app.logger.info('Updating entry %s.', (title))
-        entry = Entry(title, body, user_id)
+        entry.title = form.title.data
+        entry.body = form.body.data
+        entry.user_id = user_id
+        current_app.logger.info('Updating entry %s.', (entry.title))
+        # entry = Entry(title, body, user_id)
 
         try:
-            db.session.add(entry)
-            # db.session.update(entry.get_or_404(entry_id))
-            # db.session.update(entry)
+            # db.session.add(entry)
             db.session.commit()
             # cache.clear()
+            # return update(entry)
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
             # return redirect(url_for('entries.show', entry_id=entry.id))
+        return redirect(url_for('entries.display_entries'))
     else:
         form.title.data = entry.title
         form.body.data = entry.body
 
     return render_template("entries/edit.html", entry=entry, form=form)
-    # return render_template("entries/show.html", entry=entry)
-    # return render_template("entries/edit.html", form=form)
 
 @entries.route('/create', methods=['GET', 'POST'])
 @login_required
