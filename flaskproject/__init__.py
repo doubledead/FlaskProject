@@ -5,7 +5,6 @@ from flask_security import SQLAlchemyUserDatastore, current_user
 
 from flaskproject.utils import get_instance_folder_path
 from flaskproject.cache import cache
-# from flaskproject.config import configure_app
 
 from .core import db, mail, security
 from .models import User, Role
@@ -57,11 +56,11 @@ def home():
 from flaskproject.main.views import main
 from flaskproject.admin.views import admin
 from flaskproject.users.views import user
-from flaskproject.events.views import mod as eventsModule
+from flaskproject.events.views import events
 from flaskproject.entries.views import entries
 
 app.register_blueprint(main, url_prefix='/main')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(user, url_prefix='/user')
-app.register_blueprint(eventsModule, url_prefix='/events')
+app.register_blueprint(events, url_prefix='/events')
 app.register_blueprint(entries, url_prefix='/entries')
