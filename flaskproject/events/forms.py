@@ -1,5 +1,8 @@
-from wtforms import Form, TextField, TextAreaField, validators
+from flask_wtf import Form
+from wtforms import StringField
+# from wtforms.validators import DataRequired
+from wtforms import validators
+# from wtforms import Form, TextField, TextAreaField, validators
 
 class CreateEventForm(Form):
-    title = TextField('Title', [validators.Length(min=1, max=70)])
-    body = TextAreaField('Body', [validators.Length(min=1, max=300)])
+    title = StringField('Title', [validators.Length(min=1, max=70)])

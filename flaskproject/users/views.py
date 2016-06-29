@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 from flask import request, redirect, url_for, json, current_app
 from ..core import db
 from flask_security.decorators import roles_required
@@ -31,14 +31,15 @@ def update():
     form = EditProfileForm()
 
     # if request.method == "POST" and form.validate_on_submit():
-    if request.method == "POST":
+    if request.method == "POST" and form.validate:
         user.email = form.email.data
         user.password = form.password.data
         user.last_edit_date = datetime.utcnow()
-        current_app.logger.info('Saving profile information for %s.', user.email)
+        current_app.logger.info('Saving profile information for %s.', (user.email))
 
         try:
             db.session.commit()
+            # flash('Update successful.')
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 

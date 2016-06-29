@@ -13,7 +13,7 @@ class Status(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(225))
     description = db.Column(db.String(225))
-    status = db.Column(db.Integer(2))
+    status = db.Column(db.Integer())
 
 class Category(db.Model):
     __tablename__ = 'categories'
@@ -28,7 +28,7 @@ class Event(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True)
     status = db.Column(db.Integer())
-    name = db.Column(db.String(225))
+    title = db.Column(db.String(225))
     create_date = db.Column(db.DateTime())
     last_edit_date = db.Column(db.DateTime())
     start_date = db.Column(db.DateTime())
@@ -47,15 +47,15 @@ class Event(db.Model):
                                secondary=events_invitees,
                                backref=db.backref('events', lazy='dynamic'))
 
-    def __init__(self, category, name=None, create_date=None):
-        self.name = name
+    def __init__(self, category, title=None, create_date=None):
+        self.title = title
         if create_date is None:
             create_date = datetime.utcnow()
         self.create_date = create_date
         self.category = category
 
     def __repr__(self):
-        return '<Event %r>' % (self.name)
+        return '<Event %r>' % (self.title)
 
 class Invitee(db.Model):
     __tablename__ = 'invitees'
