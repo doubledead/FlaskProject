@@ -6,3 +6,4 @@ from wtforms import validators
 
 class CreateEventForm(Form):
     title = StringField('Title', [validators.Length(min=1, max=70)])
+    address = StringField('Address', [validators.Length(min=1, max=70)])

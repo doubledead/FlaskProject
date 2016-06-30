@@ -12,7 +12,8 @@ entries = Blueprint('entries', __name__, template_folder='templates')
 @entries.route('/')
 @login_required
 def index():
-    entries = [entry for entry in Entry.query.all()]
+    user_id = current_user.id
+    entries = Entry.query.filter_by(user_id=user_id)
     current_app.logger.info('Displaying all entries.')
 
     return render_template('entries/entries.html', entries=entries)
@@ -20,7 +21,8 @@ def index():
 @entries.route('/')
 @login_required
 def display_entries():
-    entries = [entry for entry in Entry.query.all()]
+    user_id = current_user.id
+    entries = Entry.query.filter_by(user_id=user_id)
     current_app.logger.info('Displaying all entries.')
 
     return render_template("entries/entries.html", entries=entries)
@@ -45,7 +47,6 @@ def create_entry():
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
-            return redirect(url_for('entries'))
 
         return redirect(url_for('entries.display_entries'))
 

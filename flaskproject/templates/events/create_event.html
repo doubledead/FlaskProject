@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'layouts/boilerplate.html' %}
+{% block container %}
+  <div class="jumbotron">
+    <h1>Create Event</h1>
+  </div>
+  {% if form.title.errors %}
+  <ul class="errors">
+    {% for error in form.title.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul><br/>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Flask Form</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-6">
+      <form method="POST" action="">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.title.label }} {{ form.title(size=20, class_='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ form.address.label }} {{ form.address(size=20, class_='form-control') }}
+        </div>
+        <input type="submit" value="Create" class="btn btn-sm btn-success">
+      </form>
+    </div>
+    <div class="col-sm-3 col-md-6">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="{{ url_for('events.display_events') }}" class="btn btn-xs btn-warning">
+        Cancel
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+  {% raw %}
+  {% endraw %}
+{% endblock %}

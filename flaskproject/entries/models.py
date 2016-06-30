@@ -18,16 +18,5 @@ class Entry(db.Model):
         self.create_date = create_date
         self.user_id = user_id
 
-    # def __repr__(self):
-    #   return '<Entry %r>' % self.title
-
-    def update(self):
-        return session_commit()
-
-def session_commit():
-    try:
-        db.session.commit()
-    except SQLAlchemyError as e:
-        db.session.rollback()
-        reason=str(e)
-        return reason
+    def __repr__(self):
+      return '<Entry %r>' % self.title
