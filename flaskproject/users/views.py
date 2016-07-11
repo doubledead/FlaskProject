@@ -35,6 +35,8 @@ def update():
         user.email = form.email.data
         user.password = form.password.data
         user.last_edit_date = datetime.utcnow()
+        user.birth_date = form.birthdate.data
+        # user.birth_date = datetime.utcnow()
         current_app.logger.info('Saving profile information for %s.', (user.email))
 
         try:

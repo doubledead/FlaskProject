@@ -1,4 +1,4 @@
-{% extends 'layouts/boilerplate.html' %}
+{% extends 'layouts/_user_profile.html' %}
 {% block container %}
   <div class="jumbotron">
     <h1>Profile Edit</h1>
@@ -25,22 +25,34 @@
     <div class="col-sm-6 col-md-6">&nbsp;</div>
   </div>
   <div class="row">
+    <div class="col-sm-12 col-md-12">
+      Last edited: {{ user.last_edit_date.strftime('%m-%d-%Y %H:%M:%S') }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
     <div class="col-sm-12 col-md-6">
-      {% if current_user.is_authenticated %}
-        <form method="POST" action="" name="update">
-          {{ form.csrf_token }}
-          <div class="form-group">
-            {{ form.email.label }} {{ form.email(size=20, class_='form-control') }}
+      <form method="POST" action="" name="update">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.email.label }} {{ form.email(size=20, class_='form-control') }}
+        </div>
+        <div class="input-group date" data-provide="datepicker">
+          {{ form.birthdate.label }} {{ form.birthdate(size=20, class_='form-control') }}
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
           </div>
-          <div class="form-group">
-            {{ form.password.label }} {{ form.password(size=20, class_='form-control') }}
-          </div>
-          <div class="form-group">
-            {{ render_field(form.confirm) }}
-          </div>
-          <input type="submit" value="Save" class="btn btn-sm btn-primary">
-        </form>
-      {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }} {{ form.password(size=20, class_='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field(form.confirm) }}
+        </div>
+        <input type="submit" value="Save" class="btn btn-sm btn-primary">
+      </form>
     </div>
     <div class="col-sm-12 col-md-6">&nbsp;</div>
   </div>
@@ -57,4 +69,5 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
+
 {% endblock %}
