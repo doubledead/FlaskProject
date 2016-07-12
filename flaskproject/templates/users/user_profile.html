@@ -5,11 +5,6 @@
     {% if current_user.is_authenticated %}
       <p>Hi, {{ current_user.email }}!</p>
       <div class="row">
-        <div class="col-sm-12 col-md-12">
-          Last login: {{ user.last_login_at.strftime('%m-%d-%Y %H:%M:%S') }}
-        </div>
-      </div>
-      <div class="row">
         <div class="col-sm-12 col-md-12">&nbsp;</div>
       </div>
       <div class="row">

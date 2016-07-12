@@ -49,5 +49,6 @@ def update():
     else:
         form.email.data = user.email
         form.password.data = user.password
+        form.birthdate.data = user.birth_date
 
     return render_template('users/edit_profile.html', user=user, form=form)

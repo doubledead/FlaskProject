@@ -1,8 +1,8 @@
 from flask_wtf import Form
 # from wtforms import Form, TextField, TextAreaField, validators
 # from flask_wtf import Form, TextField, Required
-from wtforms import StringField, PasswordField
-from wtforms.fields import DateField
+from wtforms import StringField, PasswordField, DateField
+# from wtforms.fields import DateField
 from wtforms import validators
 
 class EditProfileForm(Form):
