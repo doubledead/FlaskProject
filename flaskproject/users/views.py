@@ -32,6 +32,9 @@ def update():
 
     # if request.method == "POST" and form.validate_on_submit():
     if request.method == "POST" and form.validate:
+        dob = form.birthdate.data
+        current_app.logger.info('DOB: %s', (dob))
+
         user.email = form.email.data
         user.password = form.password.data
         user.last_edit_date = datetime.utcnow()
