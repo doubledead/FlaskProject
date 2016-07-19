@@ -12,15 +12,14 @@
       <p>
         {{ field.label }} {{ field(**kwargs)|safe }}
         {% if field.errors %}
-      <ul>
-        {% for error in field.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+          <ul>
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </p>
       {% endmacro %}
-
     </div>
     <div class="col-sm-6 col-md-6">&nbsp;</div>
   </div>
@@ -39,9 +38,6 @@
 
         <div class="form-group">
           {{ form.password.label }} {{ form.password(size=20, class_='form-control') }}
-        </div>
-        <div class="form-group">
-          {{ render_field(form.confirm) }}
         </div>
         <input type="submit" value="Save" class="btn btn-sm btn-primary">
       </form>

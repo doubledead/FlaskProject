@@ -12,8 +12,9 @@ class EditProfileForm(Form):
     # username = TextField('Username', [validators.Length(min=1, max=70)])
     # password = PasswordField('Password', [validators.Length(min=1, max=70)])
     birthdate = DateField('Birth Date', format='%m-%d-%Y')
-    password = PasswordField('New Password', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match.')
-    ])
-    confirm = PasswordField('Repeat Password')
+    password = PasswordField('New Password', [validators.DataRequired()])
+    # password = PasswordField('New Password', [
+    #     validators.DataRequired(),
+    #     validators.EqualTo('confirm', message='Passwords must match.')
+    # ])
+    # confirm = PasswordField('Repeat Password')
