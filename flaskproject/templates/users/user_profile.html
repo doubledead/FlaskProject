@@ -9,7 +9,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-12">
-          Date of birth:
+          Date of birth: {{ user.birth_date.strftime('%m-%d-%Y') }}
         </div>
       </div>
       <div class="row">
@@ -18,9 +18,7 @@
       <div class="row">
         <div class="col-md-12">
           <p>
-            <a href="{{ url_for('user.update') }}" class="btn btn-sm btn-info">
-              Edit Profile
-            </a>
+            <a href="{{ url_for('user.update') }}" class="btn btn-sm btn-info">Edit Profile</a>
           </p>
         </div>
       </div>

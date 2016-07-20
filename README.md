@@ -9,7 +9,7 @@ Features:
 - [Jinja2][jj] template engine
 - Twitter Bootstrap
 
-This webapp requires these programs: 
+This web app requires these programs: 
 
 - Python 2.7.*
 - pip
@@ -25,7 +25,7 @@ This webapp requires these programs:
 
 	$ pip install -r requirements.txt
 
-#### 3. Install all required JS libraries
+#### 3. Install Bower dependencies
 
 	$ cd /flaskproject/static
 	$ bower install

@@ -27,16 +27,32 @@
   <footer class="footer"></footer>
   <script>
     $(document).ready(function(){
-      $('#birthdate').datepicker();
+{#      $('#birthdate').datepicker();#}
 
-{#      $('#birthdate').blur(function () {#}
-{#        var dateVal = $( this ).val();#}
-{#        console.log(dateVal);#}
-{#        var date = moment(dateVal).format();#}
-{#        console.log(date);#}
-{#        $(this).val(date);#}
+      {# Slashes don't format to Python datetime object #}
+{#      $('#birthdate').datepicker({#}
+{#        format: 'mm/dd/yyyy'#}
 {#      });#}
+
+      {# Dashes instead of slashes #}
+{#      $('#birthdate').datepicker({#}
+{#        format: 'yyyy-mm-dd'#}
+{#      });#}
+
+      $('#birthdate').datepicker({
+        format: 'mm-dd-yyyy'
+      });
     });
+  </script>
+  <script>
+    function test() {
+      var dateField = document.getElementById("birthdate").value;
+      var dateTest1 = moment(dateField).utc();
+      console.log(dateTest1);
+
+      $( "#birthdate" ).val( dateTest1 );
+
+    }
   </script>
   </body>
 </html>

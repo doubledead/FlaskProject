@@ -32,26 +32,23 @@ def update():
 
     # if request.method == "POST" and form.validate_on_submit():
     if request.method == "POST" and form.validate:
-        # dob = datetime.strptime(form.birthdate.data,'%m/%d/%Y %I:%M:%S %p')
-        # current_app.logger.info('DOB: %s', (dob))
-
         user.email = form.email.data
-        user.password = form.password.data
+        # user.password = form.password.data
         user.last_edit_date = datetime.utcnow()
         user.birth_date = form.birthdate.data
-        # user.birth_date = datetime.utcnow()
         current_app.logger.info('Saving profile information for %s.', (user.email))
+
+        # dob = form.birthdate.data
+        # current_app.logger.info('DOB: %s', (dob))
 
         try:
             db.session.commit()
-            # flash('Update successful.')
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
         return redirect(url_for('user.show', user_id=user.id))
     else:
         form.email.data = user.email
-        form.password.data = user.password
         form.birthdate.data = user.birth_date
 
     return render_template('users/edit_profile.html', user=user, form=form)
