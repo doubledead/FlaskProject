@@ -28,20 +28,17 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(120))
     active = db.Column(db.Boolean())
-    birth_date = db.Column(db.DateTime())
-
-    last_edit_date = db.Column(db.DateTime())
-
     #confirmed_at = db.Column(db.DateTime())
-
-    # User tracking fields
-    # https://pythonhosted.org/Flask-Security/models.html
     last_login_at = db.Column(db.DateTime())
     current_login_at = db.Column(db.DateTime())
     last_login_ip = db.Column(db.String(100))
     current_login_ip = db.Column(db.String(100))
     login_count = db.Column(db.Integer)
     registered_at = db.Column(db.DateTime())
+    birth_date = db.Column(db.DateTime())
+    last_edit_date = db.Column(db.DateTime())
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
 
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))

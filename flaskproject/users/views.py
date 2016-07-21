@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, flash
 from flask import request, redirect, url_for, json, current_app
 from ..core import db
-from flask_security.decorators import roles_required
 from flask_security import login_required, current_user
 from datetime import datetime
 from .forms import EditProfileForm
@@ -48,5 +47,7 @@ def update():
     elif request.method != "POST":
         form.email.data = user.email
         form.birthdate.data = user.birth_date
+        form.last_name.data = user.last_name
+        form.first_name.data = user.first_name
 
     return render_template('users/edit_profile.html', form=form)
