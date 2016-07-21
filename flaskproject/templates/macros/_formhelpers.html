@@ -1,4 +1,4 @@
-{% macro render_field(field) %}
+{% macro render_field_with_errors(field) %}
   <p>
     {{ field.label }} {{ field(**kwargs)|safe }}
     {% if field.errors %}
@@ -9,4 +9,8 @@
       </ul>
     {% endif %}
   </p>
+{% endmacro %}
+
+{% macro render_field(field) %}
+  <p>{{ field(**kwargs)|safe }}</p>
 {% endmacro %}

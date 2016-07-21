@@ -30,10 +30,8 @@ def update():
     user = User.query.filter_by(id=user_id).first_or_404()
     form = EditProfileForm()
 
-    # if request.method == "POST" and form.validate_on_submit():
-    if request.method == "POST" and form.validate:
+    if request.method == "POST" and form.validate():
         user.email = form.email.data
-        # user.password = form.password.data
         user.last_edit_date = datetime.utcnow()
         user.birth_date = form.birthdate.data
         current_app.logger.info('Saving profile information for %s.', (user.email))
@@ -47,8 +45,8 @@ def update():
             current_app.logger.error(e)
 
         return redirect(url_for('user.show', user_id=user.id))
-    else:
+    elif request.method != "POST":
         form.email.data = user.email
         form.birthdate.data = user.birth_date
 
-    return render_template('users/edit_profile.html', user=user, form=form)
+    return render_template('users/edit_profile.html', form=form)

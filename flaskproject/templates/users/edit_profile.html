@@ -3,26 +3,7 @@
   <div class="jumbotron">
     <h1>Profile Edit</h1>
   </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-12">&nbsp;</div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6 col-md-6">
-      {% macro render_field(field) %}
-      <p>
-        {{ field.label }} {{ field(**kwargs)|safe }}
-        {% if field.errors %}
-          <ul>
-            {% for error in field.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </p>
-      {% endmacro %}
-    </div>
-    <div class="col-sm-6 col-md-6">&nbsp;</div>
-  </div>
+  {% from "macros/_formhelpers.html" import render_field_with_errors, render_field %}
   <div class="row">
     <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
@@ -31,14 +12,12 @@
       <form method="POST" action="" name="update">
         {{ form.csrf_token }}
         <div class="form-group">
-          {{ form.email.label }} {{ form.email(size=20, class_='form-control') }}
+          {{ render_field_with_errors(form.email, size=20, class='form-control') }}
         </div>
         <div class="form-group">
-          {{ form.birthdate.label }} {{ form.birthdate(size=20, class_='form-control') }}
+          {{ render_field_with_errors(form.birthdate, size=20, class='form-control') }}
         </div>
-        <div class="form-group">
-          {{ form.password.label }} {{ form.password(size=20, class_='form-control') }}
-        </div>
+{#        {{ render_field(form.submit, class='btn btn-sm btn-primary') }}#}
         <input type="submit" value="Save" class="btn btn-sm btn-primary">
       </form>
     </div>
@@ -50,6 +29,14 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <a href="/user" class="btn btn-xs btn-warning">Cancel</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <a href="/change">Change Password</a>
     </div>
   </div>
   <div class="row">
