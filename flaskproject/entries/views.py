@@ -14,7 +14,6 @@ entries = Blueprint('entries', __name__, template_folder='templates')
 def index():
     user_id = current_user.id
     entries = Entry.query.filter_by(user_id=user_id)
-    current_app.logger.info('Displaying all entries.')
 
     return render_template('entries/entries.html', entries=entries)
 
