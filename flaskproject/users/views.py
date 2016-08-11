@@ -31,12 +31,9 @@ def update():
 
     if request.method == "POST" and form.validate():
         user.email = form.email.data
+        user.first_name = form.first_name.data
+        user.last_name = form.last_name.data
         user.last_edit_date = datetime.utcnow()
-        user.birth_date = form.birthdate.data
-        current_app.logger.info('Saving profile information for %s.', (user.email))
-
-        # dob = form.birthdate.data
-        # current_app.logger.info('DOB: %s', (dob))
 
         try:
             db.session.commit()
@@ -46,7 +43,6 @@ def update():
         return redirect(url_for('user.show', user_id=user.id))
     elif request.method != "POST":
         form.email.data = user.email
-        form.birthdate.data = user.birth_date
         form.last_name.data = user.last_name
         form.first_name.data = user.first_name
 

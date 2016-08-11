@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Flask Project - Edit Profile</title>
+    <title>Flask Project - Register</title>
     <meta name="description" content="Flask App">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include "assets/_datepicker_vendor_js.html" %}
     <link href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    {% include "assets/_datepicker_vendor_css.html" %}
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
@@ -17,5 +19,13 @@
     {% block container %}{% endblock %}
   </div>
   <footer class="footer"></footer>
+  <script>
+    $(document).ready(function(){
+
+      $('.datepicker').datepicker({
+        format: 'mm-dd-yyyy'
+      });
+    });
+  </script>
   </body>
 </html>
