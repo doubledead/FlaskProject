@@ -1,0 +1,26 @@
+{% extends 'layouts/boilerplate.html' %}
+{% block container %}
+  <div class="jumbotron">
+    <h1>Event {{ event.title }}</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-3">Title</div>
+    <div class="col-sm-3 col-md-2">Start Date</div>
+    <div class="col-sm-9 col-md-2">End Date</div>
+    <div class="col-sm-3 col-md-1">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-3">{{ event.title }}</div>
+    <div class="col-sm-3 col-md-2">{{ event.start_date.strftime('%m-%d-%Y') }}</div>
+    <div class="col-sm-3 col-md-2">{{ event.end_date.strftime('%m-%d-%Y') }}</div>
+    <div class="col-sm-3 col-md-1">
+      <a href="{{ url_for('events.update', event_id=event.id) }}" class="btn btn-xs btn-info">
+        Edit
+      </a>
+    </div>
+    <div class="col-sm-3 col-md-1">&nbsp;</div>
+  </div>
+{% endblock %}

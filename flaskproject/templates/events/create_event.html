@@ -1,29 +1,41 @@
-{% extends 'layouts/boilerplate.html' %}
+{% extends 'layouts/_datepicker_layout.html' %}
 {% block container %}
   <div class="jumbotron">
     <h1>Create Event</h1>
   </div>
-  {% if form.title.errors %}
-  <ul class="errors">
-    {% for error in form.title.errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-  </ul><br/>
-  {% endif %}
   <div class="row">
     <div class="col-md-12">
-      <h4>Flask Form</h4>
+      <h4>Flask Event Form</h4>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-3 col-md-6">
+      {% from "macros/_formhelpers.html" import render_field_with_errors, render_field %}
       <form method="POST" action="">
         {{ form.csrf_token }}
         <div class="form-group">
-          {{ form.title.label }} {{ form.title(size=20, class_='form-control') }}
+          {{ render_field_with_errors(form.title, size=20, class='form-control') }}
         </div>
         <div class="form-group">
-          {{ form.address.label }} {{ form.address(size=20, class_='form-control') }}
+          {{ render_field_with_errors(form.address, size=20, class='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.city, size=20, class='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.state, size=20, class='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.zip_code, size=20, class='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.country, size=20, class='form-control') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.start_date, size=20, class='form-control datepicker') }}
+        </div>
+        <div class="form-group">
+          {{ render_field_with_errors(form.end_date, size=20, class='form-control datepicker') }}
         </div>
         <input type="submit" value="Create" class="btn btn-sm btn-success">
       </form>

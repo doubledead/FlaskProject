@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 from flask import request, redirect, url_for, json, current_app
 from ..core import db
 from flask_security import login_required, current_user
+from datetime import datetime
 from .forms import CreateEntryForm, UpdateEntryForm
-from flaskproject.cache import cache
 from .models import Entry
 from sqlalchemy import exc
 
@@ -22,7 +22,6 @@ def index():
 def display_entries():
     user_id = current_user.id
     entries = Entry.query.filter_by(user_id=user_id)
-    current_app.logger.info('Displaying all entries.')
 
     return render_template("entries/entries.html", entries=entries)
 
@@ -30,19 +29,16 @@ def display_entries():
 @login_required
 def create_entry():
     form = CreateEntryForm(request.form)
-    user_id = current_user.id
 
     if request.method == 'POST' and form.validate():
         title = form.title.data
         body = form.body.data
-        user_id = user_id
-        current_app.logger.info('Adding a new entry %s.', (title))
+        user_id = current_user.id
         entry = Entry(title, body, user_id)
 
         try:
             db.session.add(entry)
             db.session.commit()
-            cache.clear()
         except exc.SQLAlchemyError as e:
             current_app.logger.error(e)
 
@@ -63,13 +59,10 @@ def show(entry_id):
 def update(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
 
-    user_id = current_user.id
     form = UpdateEntryForm()
     if request.method == "POST" and form.validate_on_submit():
         entry.title = form.title.data
         entry.body = form.body.data
-        entry.user_id = user_id
-        current_app.logger.info('Updating entry %s.', entry.title)
 
         try:
             db.session.commit()
@@ -89,7 +82,6 @@ def delete(entry_id):
     entry = Entry.query.filter_by(id=entry_id).first_or_404()
     user_id = current_user.id
     if user_id == entry.user_id:
-        current_app.logger.info('Deleting entry %s.', entry.title)
         try:
             db.session.delete(entry)
             db.session.commit()
@@ -97,9 +89,6 @@ def delete(entry_id):
             current_app.logger.error(e)
 
         return redirect(url_for('entries.display_entries'))
-
-    # db.session.delete(entry)
-    # db.session.commit()
 
     return redirect(url_for('entries.display_entries'))
 

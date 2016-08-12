@@ -6,7 +6,7 @@
 """
 
 from flask_wtf import Form
-from wtforms import StringField, DateField, DateTimeField
+from wtforms import StringField, DateField
 from wtforms import validators
 
 from flask_security.forms import RegisterForm

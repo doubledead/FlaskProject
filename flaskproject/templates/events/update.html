@@ -1,0 +1,62 @@
+{% extends 'layouts/_datepicker_layout.html' %}
+{% block container %}
+  <div class="jumbotron">
+    <h1>Edit Event</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Flask Form</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-6">
+      <div class="top-pad">
+          {% from "macros/_formhelpers.html" import render_field_with_errors, render_field %}
+        <form method="POST" action="" name="update">
+            {{ form.csrf_token }}
+          <div class="form-group">
+              {{ render_field_with_errors(form.title, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.address, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.city, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.state, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.zip_code, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.country, size=20, class='form-control') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.start_date, size=20, class='form-control datepicker') }}
+          </div>
+          <div class="form-group">
+              {{ render_field_with_errors(form.end_date, size=20, class='form-control datepicker') }}
+          </div>
+          <input type="submit" value="Save" class="btn btn-sm btn-success">
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-6">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-12">
+      <a href="{{ url_for('events.delete', event_id=event.id) }}" class="btn btn-xs btn-danger">
+        Delete
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-12">&nbsp;</div>
+  </div>
+  {% raw %}
+  {% endraw %}
+{% endblock %}

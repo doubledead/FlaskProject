@@ -14,9 +14,11 @@
     </p>
   </div>
   <div class="row">
-    <div class="col-sm-3 col-md-1">ID</div>
-    <div class="col-sm-3 col-md-3">Create Date</div>
     <div class="col-sm-3 col-md-2">Name</div>
+    <div class="col-sm-3 col-md-2">Start Date</div>
+    <div class="col-sm-3 col-md-2">End Date</div>
+    <div class="col-sm-3 col-md-2">Status</div>
+    <div class="col-sm-3 col-md-2">Category</div>
     <div class="col-sm-3 col-md-1">&nbsp;</div>
   </div>
   <div class="row">
@@ -24,9 +26,11 @@
   </div>
   {% for data in events %}
     <div class="row">
-      <div class="col-sm-3 col-md-1">{{data.id}}</div>
-      <div class="col-sm-3 col-md-3">{{data.create_date}}</div>
       <div class="col-sm-3 col-md-2">{{data.title}}</div>
+      <div class="col-sm-3 col-md-2">{{data.start_date}}</div>
+      <div class="col-sm-3 col-md-2">{{data.end_date}}</div>
+      <div class="col-sm-3 col-md-2">{{data.status.name}}</div>
+      <div class="col-sm-3 col-md-2">{{data.category.name}}</div>
       <div class="col-sm-3 col-md-1">&nbsp;</div>
     </div>
     <div class="row">
