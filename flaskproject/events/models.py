@@ -79,8 +79,10 @@ class Category(db.Model):
     description = db.Column(db.String(225))
     status_code = db.Column(db.Integer())
 
-    def __init__(self, name):
+    def __init__(self, name, description, status_code):
         self.name = name
+        self.description = description
+        self.status_code = status_code
 
         def __repr__(self):
             return 'Category %r>' % self.name
@@ -91,8 +93,10 @@ class Status(db.Model):
     description = db.Column(db.String(225))
     status_code = db.Column(db.Integer())
 
-    def __init__(self, name):
+    def __init__(self, name, description, status_code):
         self.name = name
+        self.description = description
+        self.status_code = status_code
 
         def __repr__(self):
             return 'Status %r>' % self.name
