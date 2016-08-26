@@ -2,15 +2,26 @@
 {% block container %}
   {% from "security/_macros.html" import render_field_with_errors, render_field %}
   {% include "security/_messages.html" %}
-  <h1>Register</h1>
-  <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form">
+  <form action="{{ url_for_security('register') }}"
+        method="POST"
+        name="register_user_form"
+        class="form-center">
+    <h2>Please register</h2>
     {{ register_user_form.hidden_tag() }}
-    {{ render_field_with_errors(register_user_form.email) }}
-    {{ render_field_with_errors(register_user_form.birth_date, class='datepicker') }}
-    {{ render_field_with_errors(register_user_form.password) }}
-    {% if register_user_form.password_confirm %}
-      {{ render_field_with_errors(register_user_form.password_confirm) }}
-    {% endif %}
-    {{ render_field(register_user_form.submit) }}
+    <div class="form-group">
+      {{ render_field_with_errors(register_user_form.email, class='form-control') }}
+    </div>
+    <div class="form-group">
+      {{ render_field_with_errors(register_user_form.birth_date, class='datepicker form-control') }}
+    </div>
+    <div class="form-group">
+      {{ render_field_with_errors(register_user_form.password, class='form-control') }}
+    </div>
+    <div class="form-group">
+      {% if register_user_form.password_confirm %}
+        {{ render_field_with_errors(register_user_form.password_confirm, class='form-control') }}
+      {% endif %}
+    </div>
+    {{ render_field(register_user_form.submit, class='btn btn-default') }}
   </form>
 {% endblock %}

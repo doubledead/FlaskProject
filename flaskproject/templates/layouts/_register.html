@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Flask Project - Register</title>
+    <title>Flask Project - Registration</title>
     <meta name="description" content="Flask App">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include "assets/_datepicker_vendor_js.html" %}
-    <link href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}" rel="stylesheet">
     {% include "assets/_datepicker_vendor_css.html" %}
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
