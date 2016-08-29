@@ -35,9 +35,9 @@ class NewEventForm(Form):
     ])
     # start_date = DateField('Start Date', [validators.DataRequired()], format='%m-%d-%Y')
     # start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M:%S %p')
-    start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M:%S')
+    start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
     # end_date = DateField('End Date', [validators.DataRequired()], format='%m-%d-%Y')
-    end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M:%S')
+    end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
 
 class UpdateEventForm(Form):
     title = StringField('Title', [
