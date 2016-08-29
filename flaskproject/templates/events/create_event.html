@@ -1,4 +1,4 @@
-{% extends 'layouts/_datepicker_layout.html' %}
+{% extends 'layouts/_datetimepicker.html' %}
 {% block container %}
   <div class="jumbotron">
     <h1>Create Event</h1>
@@ -52,12 +52,22 @@
     <div class="row">
       <div class="col-sm-3 col-md-3">
         <div class="form-group">
-          {{ render_field_with_errors(form.start_date, class='form-control datepicker') }}
+          <div class="input-group date datetimepicker" >
+            {{ render_field_with_errors(form.start_date, class='form-control') }}
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
         </div>
       </div>
       <div class="col-sm-3 col-md-3">
         <div class="form-group">
-          {{ render_field_with_errors(form.end_date, class='form-control datepicker') }}
+          <div class="input-group date datetimepicker" >
+            {{ render_field_with_errors(form.end_date, class='form-control') }}
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

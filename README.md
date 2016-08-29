@@ -14,7 +14,6 @@ This web app requires these programs:
 - Python 2.7.*
 - pip
 - Virtualenv
-- Bower
 
 #### 1. Activate virtualenv
 
@@ -25,16 +24,11 @@ This web app requires these programs:
 
 	$ pip install -r requirements.txt
 
-#### 3. Install Bower dependencies
-
-	$ cd /flaskproject/static
-	$ bower install
-
-#### 4. Initialize database
+#### 3. Initialize database
 
 	$ python seed.py
 
-#### 5. Run the Flask project
+#### 4. Run the Flask project
 
 	$ python run.py
 

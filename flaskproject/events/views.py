@@ -41,7 +41,7 @@ def create_event():
         end_date = form.end_date.data
         last_edit_date = datetime.utcnow()
         user_id = current_user.id
-        category = Category(name='active', status_code=100)
+        category = Category(name='event', status_code=100)
         status = Status(name='active', status_code=100)
         event = Event(title, address, city, state, zip_code, country,
                       start_date, end_date, last_edit_date, user_id, status, category)

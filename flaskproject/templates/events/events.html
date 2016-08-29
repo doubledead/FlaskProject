@@ -14,24 +14,28 @@
     </p>
   </div>
   <div class="row">
-    <div class="col-sm-3 col-md-2">Name</div>
-    <div class="col-sm-3 col-md-2">Start Date</div>
-    <div class="col-sm-3 col-md-2">End Date</div>
-    <div class="col-sm-3 col-md-2">Status</div>
-    <div class="col-sm-3 col-md-2">Category</div>
-    <div class="col-sm-3 col-md-1">&nbsp;</div>
+    <div class="col-sm-2 col-md-2">Name</div>
+    <div class="col-sm-2 col-md-2">Start Date</div>
+    <div class="col-sm-2 col-md-2">End Date</div>
+    <div class="col-sm-2 col-md-2">Status</div>
+    <div class="col-sm-2 col-md-2">Category</div>
+    <div class="col-sm-2 col-md-1">&nbsp;</div>
   </div>
   <div class="row">
     <div class="col-md-12">&nbsp;</div>
   </div>
   {% for data in events %}
     <div class="row">
-      <div class="col-sm-3 col-md-2">{{data.title}}</div>
-      <div class="col-sm-3 col-md-2">{{data.start_date}}</div>
-      <div class="col-sm-3 col-md-2">{{data.end_date}}</div>
-      <div class="col-sm-3 col-md-2">{{data.status.name}}</div>
-      <div class="col-sm-3 col-md-2">{{data.category.name}}</div>
-      <div class="col-sm-3 col-md-1">&nbsp;</div>
+      <div class="col-sm-2 col-md-2">{{data.title}}</div>
+      <div class="col-sm-2 col-md-2">{{data.start_date}}</div>
+      <div class="col-sm-2 col-md-2">{{data.end_date}}</div>
+      <div class="col-sm-2 col-md-2">{{data.status.name}}</div>
+      <div class="col-sm-2 col-md-2">{{data.category.name}}</div>
+      <div class="col-sm-1 col-md-1">
+        <a href="{{ url_for('events.show', event_id=data.id) }}" class="btn btn-xs btn-info">
+          View
+        </a>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">&nbsp;</div>
