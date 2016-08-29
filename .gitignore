@@ -66,3 +66,6 @@ flaskproject/static/bower_components
 
 # IntelliJ IDEA IDE
 .idea/
+
+# SQLite
+*.sqlite

@@ -12,6 +12,7 @@ class Guest(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True)
     email = db.Column(db.String(225))
+    user_id =db.Column(db.Integer())
 
     def __init__(self, email):
         self.email = email
@@ -76,12 +77,10 @@ class Event(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(225))
-    description = db.Column(db.String(225))
     status_code = db.Column(db.Integer())
 
-    def __init__(self, name, description, status_code):
+    def __init__(self, name, status_code):
         self.name = name
-        self.description = description
         self.status_code = status_code
 
         def __repr__(self):
@@ -90,12 +89,10 @@ class Category(db.Model):
 class Status(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(225))
-    description = db.Column(db.String(225))
     status_code = db.Column(db.Integer())
 
-    def __init__(self, name, description, status_code):
+    def __init__(self, name, status_code):
         self.name = name
-        self.description = description
         self.status_code = status_code
 
         def __repr__(self):

@@ -13,7 +13,7 @@ from wtforms import validators
 class NewEventForm(Form):
     title = StringField('Title', [
         validators.DataRequired(),
-        validators.Length(min=1, max=70)
+        validators.Length(min=1, max=250)
     ])
     address = StringField('Address', [
         validators.DataRequired(),
@@ -31,9 +31,7 @@ class NewEventForm(Form):
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
-    country = StringField('Country', [
-        validators.DataRequired(),
-        validators.Length(min=1, max=70)
+    country = StringField('Country', [validators.Length(max=70)
     ])
     start_date = DateField('Start Date', [validators.DataRequired()], format='%m-%d-%Y')
     end_date = DateField('End Date', [validators.DataRequired()], format='%m-%d-%Y')
