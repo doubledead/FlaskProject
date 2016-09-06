@@ -77,11 +77,9 @@ class Event(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(225))
-    status_code = db.Column(db.Integer())
 
-    def __init__(self, name, status_code):
+    def __init__(self, name):
         self.name = name
-        self.status_code = status_code
 
         def __repr__(self):
             return 'Category %r>' % self.name
@@ -89,11 +87,9 @@ class Category(db.Model):
 class Status(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(225))
-    status_code = db.Column(db.Integer())
 
-    def __init__(self, name, status_code):
+    def __init__(self, name):
         self.name = name
-        self.status_code = status_code
 
         def __repr__(self):
             return 'Status %r>' % self.name
