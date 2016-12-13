@@ -2,11 +2,12 @@
 import os
 from flask import abort, Flask, g, render_template, request
 from flask_security import SQLAlchemyUserDatastore, current_user
+import logging
 
 from flaskproject.utils import get_instance_folder_path
 from flaskproject.cache import cache
 
-from .core import db, mail, security
+from .core import db, ma, mail, moment, scheduler, security
 from .models import User, Role
 
 from .users.forms import ExtendedRegisterForm
@@ -20,12 +21,20 @@ app = Flask(__name__,
 app.config.from_object('flaskproject.settings')
 app.config.from_pyfile('config.cfg', silent=True)
 
+# logging.basicConfig(format=app.config['LOGGING_FORMAT'],filename='logs.log',level=logging.DEBUG)
+
 cache.init_app(app)
 
 db.init_app(app)
+ma.init_app(app)
 mail.init_app(app)
+moment.init_app(app)
 security.init_app(app, SQLAlchemyUserDatastore(db, User, Role),
                   register_form=ExtendedRegisterForm)
+
+# Flask-APScheduler initialize and start.
+# scheduler.init_app(app)
+# scheduler.start()
 
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 

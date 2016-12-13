@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-4">
         <div class="form-group">
-          {{ render_field_with_errors(form.title, class='form-control') }}
+          {{ render_field_with_errors(form.name, class='form-control') }}
         </div>
       </div>
       <div class="col-sm-3 col-md-8">&nbsp;</div>
@@ -23,6 +23,14 @@
       <div class="col-sm-3 col-md-4">
         <div class="form-group">
           {{ render_field_with_errors(form.address, class='form-control') }}
+        </div>
+      </div>
+      <div class="col-sm-3 col-md-8">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-md-4">
+        <div class="form-group">
+          {{ render_field_with_errors(form.address_line_two, class='form-control') }}
         </div>
       </div>
       <div class="col-sm-3 col-md-8">&nbsp;</div>

@@ -7,8 +7,9 @@ TESTING = False
 
 CACHE_TYPE = 'simple'
 
+## SQLite Connection
 SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
-# PostgreSQL Connection
+# Local PostgreSQL Connection
 # SQLALCHEMY_DATABASE_URI = 'postgresql://puser:Password1@localhost/devdb'
 SECRET_KEY = 'a9eec0e0-23b7-4788-9a92-318347b9a39a'
 
@@ -32,3 +33,6 @@ SECURITY_SEND_PASSWORD_CHANGE_EMAIL = False # Prod change
 SECURITY_POST_REGISTER_VIEW = '/main'
 SECURITY_SEND_REGISTER_EMAIL = False
 SECURITY_TRACKABLE = True
+
+# Configure logging
+LOGGING_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

@@ -31,20 +31,21 @@ def create_event():
     form = NewEventForm(request.form)
 
     if request.method == 'POST' and form.validate():
-        title = form.title.data
         address = form.address.data
+        address_line_two = form.address_line_two.data
+        category_id = 100
         city = form.city.data
-        state = form.state.data
-        zip_code = form.zip_code.data
         country = form.country.data
-        start_date = form.start_date.data
         end_date = form.end_date.data
         last_edit_date = datetime.utcnow()
+        name = form.name.data
+        start_date = form.start_date.data
+        state = form.state.data
+        status_id = 100
         user_id = current_user.id
-        category = Category('event')
-        status = Status('active')
-        event = Event(title, address, city, state, zip_code, country,
-                      start_date, end_date, last_edit_date, user_id, status, category)
+        zip_code = form.zip_code.data
+        event = Event(address, address_line_two, category_id, city, country, end_date, last_edit_date, name,
+                      start_date, state, status_id, user_id, zip_code)
 
         try:
             db.session.add(event)
@@ -72,8 +73,9 @@ def update(event_id):
 
     form = UpdateEventForm()
     if request.method == "POST" and form.validate():
-        event.title = form.title.data
+        event.name = form.name.data
         event.address = form.address.data
+        event.address_line_two = form.address_line_two.data
         event.start_date = form.start_date.data
         event.end_date = form.end_date.data
         event.last_edit_date = datetime.utcnow()
@@ -85,8 +87,9 @@ def update(event_id):
 
         return redirect(url_for('events.show', event_id=event.id))
     elif request.method != "POST":
-        form.title.data = event.title
+        form.name.data = event.name
         form.address.data = event.address
+        form.address_line_two.data = event.address_line_two
         form.start_date.data = event.start_date
         form.end_date.data = event.end_date
 

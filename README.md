@@ -17,7 +17,7 @@ This web app requires these programs:
 
 #### 1. Activate virtualenv
 
-	$ virtualenv env
+	$ virtualenv env (Use this only once to initialize env folder)
 	$ source env/bin/activate
 
 #### 2. Install all required Python libraries

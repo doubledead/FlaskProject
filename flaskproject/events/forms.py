@@ -11,7 +11,7 @@ from wtforms import StringField, DateField, DateTimeField
 from wtforms import validators
 
 class NewEventForm(Form):
-    title = StringField('Title', [
+    name = StringField('Name', [
         validators.DataRequired(),
         validators.Length(min=1, max=250)
     ])
@@ -19,6 +19,7 @@ class NewEventForm(Form):
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
+    address_line_two = StringField('Line 2', [validators.Length(min=1, max=70)])
     city = StringField('City', [
         validators.DataRequired(),
         validators.Length(min=1, max=70)
@@ -40,7 +41,7 @@ class NewEventForm(Form):
     end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
 
 class UpdateEventForm(Form):
-    title = StringField('Title', [
+    name = StringField('Name', [
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
@@ -48,6 +49,7 @@ class UpdateEventForm(Form):
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
+    address_line_two = StringField('Line 2', [validators.Length(max=70)])
     city = StringField('City', [
         validators.DataRequired(),
         validators.Length(min=1, max=70)
