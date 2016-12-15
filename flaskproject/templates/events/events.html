@@ -1,7 +1,8 @@
-{% extends 'layouts/boilerplate.html' %}
+{% extends 'layouts/events/events.html' %}
+{% block title %}Events{% endblock %}
 {% block container %}
   <div class="jumbotron">
-    <h2>Events</h2>
+    <h3>Events</h3>
   </div>
   <div class="row">
     <div class="col-md-12">&nbsp;</div>
@@ -14,25 +15,23 @@
     </p>
   </div>
   <div class="row">
-    <div class="col-sm-2 col-md-2">Name</div>
-    <div class="col-sm-2 col-md-2">Start Date</div>
-    <div class="col-sm-2 col-md-2">End Date</div>
-    <div class="col-sm-2 col-md-2">Status</div>
+    <div class="col-sm-3 col-md-3">Name</div>
+    <div class="col-sm-3 col-md-3">Start Date</div>
+    <div class="col-sm-3 col-md-3">End Date</div>
     <div class="col-sm-2 col-md-2">Category</div>
-    <div class="col-sm-2 col-md-1">&nbsp;</div>
+    <div class="col-sm-1 col-md-1">&nbsp;</div>
   </div>
   <div class="row">
     <div class="col-md-12">&nbsp;</div>
   </div>
-  {% for data in events %}
+  {% for event in events %}
     <div class="row">
-      <div class="col-sm-2 col-md-2">{{data.title}}</div>
-      <div class="col-sm-2 col-md-2">{{data.start_date}}</div>
-      <div class="col-sm-2 col-md-2">{{data.end_date}}</div>
-      <div class="col-sm-2 col-md-2">{{data.status.name}}</div>
-      <div class="col-sm-2 col-md-2">{{data.category.name}}</div>
+      <div class="col-sm-3 col-md-3">{{event.name}}</div>
+      <div class="col-sm-3 col-md-3">{{ moment(event.start_date).format('MM-D-YYYY, h:mm a') }}</div>
+      <div class="col-sm-3 col-md-3">{{ moment(event.end_date).format('MM-D-YYYY, h:mm a') }}</div>
+      <div class="col-sm-2 col-md-2">{{event.category_id}}</div>
       <div class="col-sm-1 col-md-1">
-        <a href="{{ url_for('events.show', event_id=data.id) }}" class="btn btn-xs btn-info">
+        <a href="{{ url_for('events.show', event_id=event.id) }}" class="btn btn-xs btn-info">
           View
         </a>
       </div>

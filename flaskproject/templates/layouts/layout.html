@@ -11,9 +11,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
-      {% include "layouts/_menu.html" %}
-    </nav>
+    {% include "layouts/_menu.html" %}
     <div class="container">
       {% block container %}{% endblock %}
     </div>

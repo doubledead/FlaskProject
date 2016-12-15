@@ -12,18 +12,18 @@ events = Blueprint('events', __name__, template_folder='templates')
 @events.route('/')
 @login_required
 def index():
-    user_id = current_user.id
-    events = Event.query.filter_by(user_id=user_id)
+    events = Event.query.filter_by(user_id=current_user.id)
 
     return render_template('events/events.html', events=events)
+
 
 @events.route('/')
 @login_required
 def display_events():
-    user_id = current_user.id
-    events = Event.query.filter_by(user_id=user_id)
+    events = Event.query.filter_by(user_id=current_user.id)
 
     return render_template("events/events.html", events=events)
+
 
 @events.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -57,6 +57,7 @@ def create_event():
 
     return render_template("events/create_event.html", form=form)
 
+
 @events.route('/<event_id>', methods=['GET', 'POST'])
 @login_required
 def show(event_id):
@@ -66,6 +67,7 @@ def show(event_id):
 
     return render_template("events/show.html", event=event, guests=guests)
 
+
 @events.route('/update/<event_id>', methods=['GET', 'POST'])
 @login_required
 def update(event_id):
@@ -73,12 +75,15 @@ def update(event_id):
 
     form = UpdateEventForm()
     if request.method == "POST" and form.validate():
-        event.name = form.name.data
         event.address = form.address.data
         event.address_line_two = form.address_line_two.data
-        event.start_date = form.start_date.data
+        event.city = form.city.data
+        event.country = form.country.data
         event.end_date = form.end_date.data
         event.last_edit_date = datetime.utcnow()
+        event.name = form.name.data
+        event.start_date = form.start_date.data
+        event.zip_code = form.zip_code.data
 
         try:
             db.session.commit()
@@ -87,13 +92,17 @@ def update(event_id):
 
         return redirect(url_for('events.show', event_id=event.id))
     elif request.method != "POST":
-        form.name.data = event.name
         form.address.data = event.address
         form.address_line_two.data = event.address_line_two
-        form.start_date.data = event.start_date
+        form.city.data = event.city
+        form.country.data = event.country
         form.end_date.data = event.end_date
+        form.name.data = event.name
+        form.start_date.data = event.start_date
+        form.zip_code.data = event.zip_code
 
     return render_template("events/update.html", event=event, form=form)
+
 
 @events.route('/delete/<event_id>', methods=['GET', 'POST'])
 @login_required

@@ -12,21 +12,19 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
-  <nav class="navbar navbar-inverse">
     {% include "layouts/_menu.html" %}
-  </nav>
-  <div class="container">
-    {% block container %}{% endblock %}
-  </div>
-  <footer class="footer"></footer>
+    <div class="container">
+      {% block container %}{% endblock %}
+    </div>
+    <footer class="footer"></footer>
 
-  <script type="text/javascript">
-    $(function () {
-      $('.datetimepicker').datetimepicker({
-        /*format: 'MM-DD-YYYY hh:mm:ss a'*/
-        format: 'MM-DD-YYYY hh:mm'
+    <script type="text/javascript">
+      $(function () {
+        $('.datetimepicker').datetimepicker({
+          /*format: 'MM-DD-YYYY hh:mm:ss a'*/
+          format: 'MM-DD-YYYY hh:mm'
+        });
       });
-    });
-  </script>
+    </script>
   </body>
 </html>

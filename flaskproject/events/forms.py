@@ -19,7 +19,7 @@ class NewEventForm(Form):
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
-    address_line_two = StringField('Line 2', [validators.Length(min=1, max=70)])
+    address_line_two = StringField('Line 2', [validators.Length(max=70)])
     city = StringField('City', [
         validators.DataRequired(),
         validators.Length(min=1, max=70)

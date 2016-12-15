@@ -102,14 +102,14 @@ class Event(db.Model):
     category_id = db.Column(db.Integer())
     city = db.Column(db.String(225))
     create_date = db.Column(db.DateTime())
+    country = db.Column(db.String(225))
     end_date = db.Column(db.DateTime())
     last_edit_date = db.Column(db.DateTime())
     name = db.Column(db.String(225))
-    state = db.Column(db.String(225))
-    country = db.Column(db.String(225))
     start_date = db.Column(db.DateTime())
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    state = db.Column(db.String(225))
     status_id = db.Column(db.Integer())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     zip_code = db.Column(db.String(225))
 
     # Many-to-Many
@@ -122,7 +122,7 @@ class Event(db.Model):
                             backref=db.backref('events', lazy='joined'))
 
     def __init__(self, address, address_line_two, category_id, city, country, end_date, last_edit_date,
-                 name, state, start_date, status_id, user_id, zip_code, create_date=None):
+                 name, start_date, state, status_id, user_id, zip_code, create_date=None):
         self.address = address
         self.address_line_two = address_line_two
         self.category_id = category_id

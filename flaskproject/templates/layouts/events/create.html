@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Flask Project - Registration</title>
-    <meta name="description" content="Flask App">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Flask Project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include "assets/_datepicker_vendor_js.html" %}
+    {% include "assets/_datetimepicker_js.html" %}
     <link href="{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}" rel="stylesheet">
-    {% include "assets/_datepicker_vendor_css.html" %}
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    {% include "assets/_datetimepicker_css.html" %}
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
@@ -18,11 +17,12 @@
       {% block container %}{% endblock %}
     </div>
     <footer class="footer"></footer>
-    <script>
-      $(document).ready(function(){
 
-        $('.datepicker').datepicker({
-          format: 'mm-dd-yyyy'
+    <script type="text/javascript">
+      $(function () {
+        $('.datetimepicker').datetimepicker({
+          /*format: 'MM-DD-YYYY hh:mm:ss a'*/
+          format: 'MM-DD-YYYY hh:mm'
         });
       });
     </script>

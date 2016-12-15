@@ -1,10 +1,11 @@
-{% extends 'layouts/_datetimepicker.html' %}
+{% extends 'layouts/events/create.html' %}
+{% block title %}FlaskProject - Create Event{% endblock %}
 {% block container %}
   <div class="jumbotron">
-    <h1>Create Event</h1>
+    <h3>Create Event</h3>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12">
       <h4>Flask Event Form</h4>
     </div>
   </div>
@@ -82,17 +83,20 @@
     <input type="submit" value="Create" class="btn btn-sm btn-success">
   </form>
   <div class="row">
-    <div class="col-md-12">&nbsp;</div>
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12">
       <a href="{{ url_for('events.display_events') }}" class="btn btn-xs btn-warning">
         Cancel
       </a>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">&nbsp;</div>
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
   {% raw %}
   {% endraw %}

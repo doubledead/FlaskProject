@@ -12,20 +12,18 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
-  <nav class="navbar navbar-inverse">
     {% include "layouts/_menu.html" %}
-  </nav>
-  <div class="container">
-    {% block container %}{% endblock %}
-  </div>
-  <footer class="footer"></footer>
+    <div class="container">
+      {% block container %}{% endblock %}
+    </div>
+    <footer class="footer"></footer>
 
-  <script>
-    $(document).ready(function(){
-      $('.datepicker').datepicker({
-        format: 'mm-dd-yyyy'
+    <script>
+      $(document).ready(function(){
+        $('.datepicker').datepicker({
+          format: 'mm-dd-yyyy'
+        });
       });
-    });
-  </script>
+    </script>
   </body>
 </html>
