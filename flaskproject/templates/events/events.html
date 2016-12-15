@@ -2,42 +2,94 @@
 {% block title %}Events{% endblock %}
 {% block container %}
   <div class="jumbotron">
-    <h3>Events</h3>
+    <h2>Events</h2>
   </div>
   <div class="row">
-    <div class="col-md-12">&nbsp;</div>
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
   <div class="row">
-    <p>
+    <div class="col-sm-12 col-md-12">
       <a href="{{ url_for('events.create_event') }}" class="btn btn-sm btn-primary">
         Create Event
       </a>
-    </p>
+    </div>
   </div>
   <div class="row">
-    <div class="col-sm-3 col-md-3">Name</div>
-    <div class="col-sm-3 col-md-3">Start Date</div>
-    <div class="col-sm-3 col-md-3">End Date</div>
-    <div class="col-sm-2 col-md-2">Category</div>
-    <div class="col-sm-1 col-md-1">&nbsp;</div>
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
   </div>
   <div class="row">
-    <div class="col-md-12">&nbsp;</div>
+    <div class="col-sm-12 col-md-12">
+      <h3>Active Events</h3>
+    </div>
   </div>
-  {% for event in events %}
+  {% if events_active_count > 0 %}
     <div class="row">
-      <div class="col-sm-3 col-md-3">{{event.name}}</div>
-      <div class="col-sm-3 col-md-3">{{ moment(event.start_date).format('MM-D-YYYY, h:mm a') }}</div>
-      <div class="col-sm-3 col-md-3">{{ moment(event.end_date).format('MM-D-YYYY, h:mm a') }}</div>
-      <div class="col-sm-2 col-md-2">{{event.category_id}}</div>
-      <div class="col-sm-1 col-md-1">
-        <a href="{{ url_for('events.show', event_id=event.id) }}" class="btn btn-xs btn-info">
-          View
-        </a>
+      <div class="col-sm-3 col-md-3">Name</div>
+      <div class="col-sm-3 col-md-3">Start Date</div>
+      <div class="col-sm-3 col-md-3">End Date</div>
+      <div class="col-sm-1 col-md-1">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12">&nbsp;</div>
+    </div>
+    {% for event in events_active %}
+      <div class="row">
+        <div class="col-sm-3 col-md-3">{{event.name}}</div>
+        <div class="col-sm-3 col-md-3">{{ moment(event.start_date).format('MM-D-YYYY, h:mm a') }}</div>
+        <div class="col-sm-3 col-md-3">{{ moment(event.end_date).format('MM-D-YYYY, h:mm a') }}</div>
+        <div class="col-sm-1 col-md-1">
+          <a href="{{ url_for('events.show', event_id=event.id) }}" class="btn btn-xs btn-info">
+            View
+          </a>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">&nbsp;</div>
+      </div>
+    {% endfor %}
+  {% else %}
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      You have no active events.
     </div>
-    <div class="row">
-      <div class="col-md-12">&nbsp;</div>
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <h3>Completed Events</h3>
     </div>
-  {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <div class="col-sm-3 col-md-3"><strong>Name</strong></div>
+        <div class="col-sm-3 col-md-3"><strong>Start</strong></div>
+        <div class="col-sm-3 col-md-3"><strong>End</strong></div>
+        <div class="col-sm-1 col-md-1">&nbsp;</div>
+        <div class="col-sm-2 col-md-2">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">&nbsp;</div>
+      </div>
+      {% for ce in events_completed %}
+      <div class="row">
+        <div class="col-sm-3 col-md-3">{{ ce.name }}</div>
+        <div class="col-sm-3 col-md-3">{{ moment(ce.start_date).format('MM-D-YYYY, h:mm a') }}</div>
+        <div class="col-sm-3 col-md-3">{{ moment(ce.end_date).format('MM-D-YYYY, h:mm a') }}</div>
+        <div class="col-sm-1 col-md-1">
+          <a href="{{ url_for('events.show', event_id=ce.id) }}" class="btn btn-xs btn-info">
+            View
+          </a>
+        </div>
+        <div class="col-sm-2 col-md-2">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">&nbsp;</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

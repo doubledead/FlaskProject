@@ -4,40 +4,32 @@
   <div class="jumbotron">
     <h3>Create Event</h3>
   </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-12">
-      <h4>Flask Event Form</h4>
-    </div>
-  </div>
   {% from "macros/_formhelpers.html" import render_field_with_errors, render_field %}
   <form method="POST" action="" name="create">
     {{ form.csrf_token }}
     <div class="row">
-      <div class="col-sm-3 col-md-4">
+      <div class="col-sm-3 col-md-3">
         <div class="form-group">
           {{ render_field_with_errors(form.name, class='form-control') }}
         </div>
       </div>
-      <div class="col-sm-3 col-md-8">&nbsp;</div>
+      <div class="col-sm-9 col-md-9">&nbsp;</div>
     </div>
     <div class="row">
-      <div class="col-sm-3 col-md-4">
+      <div class="col-sm-3 col-md-3">
         <div class="form-group">
           {{ render_field_with_errors(form.address, class='form-control') }}
         </div>
       </div>
-      <div class="col-sm-3 col-md-8">&nbsp;</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3 col-md-4">
+      <div class="col-sm-2 col-md-2">
         <div class="form-group">
           {{ render_field_with_errors(form.address_line_two, class='form-control') }}
         </div>
       </div>
-      <div class="col-sm-3 col-md-8">&nbsp;</div>
+      <div class="col-sm-7 col-md-7">&nbsp;</div>
     </div>
     <div class="row">
-      <div class="col-sm-2 col-md-3">
+      <div class="col-sm-2 col-md-2">
         <div class="form-group">
           {{ render_field_with_errors(form.city, class='form-control') }}
         </div>
@@ -52,6 +44,9 @@
           {{ render_field_with_errors(form.zip_code, class='form-control') }}
         </div>
       </div>
+      <div class="col-sm-7 col-md-7">&nbsp;</div>
+    </div>
+    <div class="row">
       <div class="col-sm-2 col-md-2">
         <div class="form-group">
           {{ render_field_with_errors(form.country, class='form-control') }}

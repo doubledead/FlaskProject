@@ -12,17 +12,43 @@ events = Blueprint('events', __name__, template_folder='templates')
 @events.route('/')
 @login_required
 def index():
-    events = Event.query.filter_by(user_id=current_user.id)
+    user_id = current_user.id
 
-    return render_template('events/events.html', events=events)
+    # All events belonging to current user.
+    # events = Event.query.filter_by(user_id=current_user.id)
+
+    # All active events belonging to current user.
+    events_active = Event.query.filter_by(user_id=user_id, status_id=100)
+    events_active_count = events_active.count()
+
+    # Events belonging to current user with status 400, completed.
+    events_completed = Event.query.filter_by(user_id=user_id, status_id=400).all()
+
+    return render_template('events/events.html',
+                           events_active=events_active,
+                           events_active_count=events_active_count,
+                           events_completed=events_completed)
 
 
 @events.route('/')
 @login_required
 def display_events():
-    events = Event.query.filter_by(user_id=current_user.id)
+    user_id = current_user.id
 
-    return render_template("events/events.html", events=events)
+    # All events belonging to current user.
+    # events = Event.query.filter_by(user_id=current_user.id)
+
+    # All active events belonging to current user.
+    events_active = Event.query.filter_by(user_id=user_id, status_id=100)
+    events_active_count = events_active.count()
+
+    # Events belonging to current user with status 400, completed.
+    events_completed = Event.query.filter_by(user_id=user_id, status_id=400).all()
+
+    return render_template("events/events.html",
+                           events_active=events_active,
+                           events_active_count=events_active_count,
+                           events_completed=events_completed)
 
 
 @events.route('/create', methods=['GET', 'POST'])
@@ -83,6 +109,7 @@ def update(event_id):
         event.last_edit_date = datetime.utcnow()
         event.name = form.name.data
         event.start_date = form.start_date.data
+        event.state = form.state.data
         event.zip_code = form.zip_code.data
 
         try:
@@ -99,6 +126,7 @@ def update(event_id):
         form.end_date.data = event.end_date
         form.name.data = event.name
         form.start_date.data = event.start_date
+        form.state.data = event.state
         form.zip_code.data = event.zip_code
 
     return render_template("events/update.html", event=event, form=form)

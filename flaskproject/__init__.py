@@ -33,8 +33,8 @@ security.init_app(app, SQLAlchemyUserDatastore(db, User, Role),
                   register_form=ExtendedRegisterForm)
 
 # Flask-APScheduler initialize and start.
-# scheduler.init_app(app)
-# scheduler.start()
+scheduler.init_app(app)
+scheduler.start()
 
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 

@@ -34,11 +34,12 @@ class NewEventForm(Form):
     ])
     country = StringField('Country', [validators.Length(max=70)
     ])
-    # start_date = DateField('Start Date', [validators.DataRequired()], format='%m-%d-%Y')
-    # start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M:%S %p')
-    start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
-    # end_date = DateField('End Date', [validators.DataRequired()], format='%m-%d-%Y')
-    end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
+    # start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
+    # start_date = DateTimeField('Start Date', [validators.DataRequired()])
+    start_date = StringField('Start Date', [validators.DataRequired()])
+    # end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
+    # end_date = DateTimeField('End Date', [validators.DataRequired()])
+    end_date = StringField('End Date', [validators.DataRequired()])
 
 class UpdateEventForm(Form):
     name = StringField('Name', [
@@ -66,5 +67,5 @@ class UpdateEventForm(Form):
         validators.DataRequired(),
         validators.Length(min=1, max=70)
     ])
-    start_date = DateField('Start Date', [validators.DataRequired()], format='%m-%d-%Y')
-    end_date = DateField('End Date', [validators.DataRequired()], format='%m-%d-%Y')
+    start_date = DateTimeField('Start Date', [validators.DataRequired()], format='%m-%d-%Y %H:%M')
+    end_date = DateTimeField('End Date', [validators.DataRequired()], format='%m-%d-%Y ')
