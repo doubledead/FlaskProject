@@ -1,0 +1,95 @@
+{% extends 'layouts/events/create.html' %}
+{% block title %}FlaskProject - Create Event{% endblock %}
+{% block container %}
+  <div class="jumbotron">
+    <h3>Create Event</h3>
+  </div>
+  <form method="POST" action="" name="create">
+    <div class="row">
+      <div class="col-sm-3 col-md-3">
+        <div class="form-group">
+          <label for="tb-name">Title:</label>
+          <input type="text" class="form-control" id="tb-name" name="eventName">
+        </div>
+      </div>
+      <div class="col-sm-9 col-md-9">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-md-3">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-7">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="col-sm-1 col-md-1">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-7">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="input-group date datetimepicker" >
+            {{ render_field_with_errors(form.start_date, class='form-control') }}
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="input-group date datetimepicker" >
+            {{ render_field_with_errors(form.end_date, class='form-control') }}
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="submit" value="Create" class="btn btn-sm btn-success">
+  </form>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <a href="{{ url_for('events.display_events') }}" class="btn btn-xs btn-warning">
+        Cancel
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">&nbsp;</div>
+  </div>
+{% endblock %}

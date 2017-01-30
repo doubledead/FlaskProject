@@ -53,7 +53,7 @@ def display_events():
 
 @events.route('/create', methods=['GET', 'POST'])
 @login_required
-def create_event():
+def create():
     form = NewEventForm(request.form)
 
     if request.method == 'POST' and form.validate():

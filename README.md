@@ -1,12 +1,12 @@
 # FlaskProject
-[Flask][fl] app using modular blueprints.
+[Flask](http://flask.pocoo.org/) app using modular blueprints.
 
-The structure is a combination of [Large app how to][la] and [overholt][oh].
+The structure is a combination of [Large app how to](https://github.com/pallets/flask/wiki/Large-app-how-to) and [overholt](https://github.com/mattupstate/overholt).
 
 Features:
 
-- [Flask-Security][fs]
-- [Jinja2][jj] template engine
+- [Flask-Security](https://github.com/mattupstate/flask-security)
+- [Jinja2](http://jinja.pocoo.org/) template engine
 - Twitter Bootstrap
 
 This web app requires these programs: 
