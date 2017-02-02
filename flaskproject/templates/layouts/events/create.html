@@ -16,16 +16,38 @@
     <div class="container">
       {% block container %}{% endblock %}
     </div>
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">&nbsp;</div>
+        </div>
+      </div>
+    </footer>
 
     <script type="text/javascript">
       $(function () {
-        $('.datetimepicker').datetimepicker({
+        $('#start_date').datetimepicker({
           /*format: 'MM-DD-YYYY hh:mm:ss a'*/
           /*format: 'MM-DD-YYYY hh:mm'*/
           format: 'MM-DD-YYYY hh:mm A'
         });
       });
     </script>
+    <script type="text/javascript">
+      $(function () {
+        $('#end_date').datetimepicker({
+          /*format: 'MM-DD-YYYY hh:mm:ss a'*/
+          /*format: 'MM-DD-YYYY hh:mm'*/
+          format: 'MM-DD-YYYY hh:mm A'
+        });
+      });
+    </script>
+    <script src="{{ url_for('static', filename='js/event/create.js') }}"></script>
   </body>
 </html>

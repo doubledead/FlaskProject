@@ -51,6 +51,41 @@ def display_events():
                            events_completed=events_completed)
 
 
+# Flask WTForms Create endpoint
+@events.route('/create_event', methods=['GET', 'POST'])
+@login_required
+def create_event():
+    form = NewEventForm(request.form)
+
+    if request.method == 'POST' and form.validate():
+        address = form.address.data
+        address_line_two = form.address_line_two.data
+        category_id = 100
+        city = form.city.data
+        country = form.country.data
+        end_date = form.end_date.data
+        last_edit_date = datetime.utcnow()
+        name = form.name.data
+        start_date = form.start_date.data
+        state = form.state.data
+        status_id = 100
+        user_id = current_user.id
+        zip_code = form.zip_code.data
+        event = Event(address, address_line_two, category_id, city, country, end_date, last_edit_date, name,
+                      start_date, state, status_id, user_id, zip_code)
+
+        try:
+            db.session.add(event)
+            db.session.commit()
+        except exc.SQLAlchemyError as e:
+            current_app.logger.error(e)
+
+        return redirect(url_for('events.display_events'))
+
+    return render_template("events/create_event.html", form=form)
+
+
+# JSON format endpoint
 @events.route('/create', methods=['GET', 'POST'])
 @login_required
 def create():
@@ -81,7 +116,7 @@ def create():
 
         return redirect(url_for('events.display_events'))
 
-    return render_template("events/create_event.html", form=form)
+    return render_template("events/create.html", form=form)
 
 
 @events.route('/<event_id>', methods=['GET', 'POST'])
