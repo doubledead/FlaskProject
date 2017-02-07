@@ -1,10 +1,54 @@
 $( document ).ready(function() {
   console.log("Ready!");
 
-  var params = {};
+  var
+    guestId = 0,
+    itemId = 0;
 
-  function addGuest() {
+  var params = {
+    guests: [],
+    items: []
+  };
 
+  function addGuestRow(email) {
+    guestId++;
+
+    var guestRow = {
+      id: guestId,
+      email: email
+    };
+
+    params.guests.push(guestRow);
+  }
+
+  function removeGuestRow(guestId) {
+    for (var i = 0; i < params.guests.length; i++) {
+      if (params.guests[i].id === guestId) {
+        params.guests.splice(i, 1);
+        break;
+      }
+    }
+  }
+
+  function addItemRow(name, quantity) {
+    itemId++;
+
+    var itemRow = {
+      id: itemId,
+      name: name,
+      quantity: quantity
+    };
+
+    params.items.push(itemRow);
+  }
+
+  function removeItemRow(itemId) {
+    for (var i = 0; i < params.items.length; i++) {
+      if (params.items[i].id === itemId) {
+        params.items.splice(i, 1);
+        break;
+      }
+    }
   }
 
 
