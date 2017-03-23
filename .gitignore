@@ -69,3 +69,6 @@ flaskproject/static/bower_components
 
 # SQLite
 *.sqlite
+
+# Vagrant
+/.vagrant/
