@@ -19,7 +19,7 @@ manager = Manager(app)
 
 @manager.command
 def hello():
-    print "hello"
+    print("hello")
 
 
 @manager.command
@@ -90,10 +90,10 @@ def event_status_check():
 
             try:
                 db.session.add(event)
-                print 'Success'
+                print('Success')
             except exc.SQLAlchemyError as e:
                 current_app.logger.error(e)
-                print 'Error'
+                print('Error')
 
 
     # Commit the db session back.

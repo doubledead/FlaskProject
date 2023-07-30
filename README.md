@@ -11,24 +11,28 @@ Features:
 
 This web app requires these programs: 
 
-- Python 2.7.*
+- Python 3.9.16
 - pip
-- Virtualenv
+- python3.10-venv
 
-#### 1. Activate virtualenv
+#### 1. First time environment initialization
 
-	$ virtualenv env (Use this only once to initialize env folder)
-	$ source env/bin/activate
+	$ python3 -m venv venv
+	$ source venv/bin/activate
 
-#### 2. Install all required Python libraries
+#### 2. Activate environment
+
+	$ source venv/bin/activate
+
+#### 3. Install all required Python libraries
 
 	$ pip install -r requirements.txt
 
-#### 3. Initialize database
+#### 4. Initialize database
 
 	$ python seed.py
 
-#### 4. Run the Flask project
+#### 5. Run the Flask project
 
 	$ python run.py
 
