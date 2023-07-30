@@ -1,7 +1,6 @@
 from ..core import db
 from datetime import datetime
-from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy.exc import SQLAlchemyError
+
 
 class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)

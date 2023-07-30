@@ -4,9 +4,11 @@ bcrypt==3.1.7
 blinker==1.4
 cffi==1.15.1
 click==7.1.2
+email-validator==1.1.1
+eventlet==0.30.2
 Flask==1.1.2
 Flask-APScheduler==1.11.0
-Flask-BabelEx==0.9.3
+Flask-BabelEx==0.9.4
 Flask-Cache==0.13.1
 Flask-Login==0.5.0
 Flask-Mail==0.9.1

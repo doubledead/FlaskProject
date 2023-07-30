@@ -8,9 +8,9 @@ TESTING = False
 CACHE_TYPE = 'simple'
 
 ## SQLite Connection
-# SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
 # Local PostgreSQL Connection
-SQLALCHEMY_DATABASE_URI = 'postgresql://puser:Password1@localhost/devdb1'
+# SQLALCHEMY_DATABASE_URI = 'postgresql://puser:Password1@localhost/devdb1'
 SECRET_KEY = 'a9eec0e0-23b7-4788-9a92-318347b9a39a'
 
 # Flask-Mail
@@ -33,6 +33,8 @@ SECURITY_SEND_PASSWORD_CHANGE_EMAIL = False # Prod change
 SECURITY_POST_REGISTER_VIEW = '/main'
 SECURITY_SEND_REGISTER_EMAIL = False
 SECURITY_TRACKABLE = True
+SECURITY_PASSWORD_SALT = 'Some_salt'
+SECURITY_EMAIL_SENDER = 'test@test.com'
 
 # Configure logging
 LOGGING_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

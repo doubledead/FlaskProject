@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    flaskproject.events.models
-    ~~~~~~~~~~~~~~~~~~~~~~
-    Event models
-"""
-
 from ..core import db, ma
 from datetime import datetime
 from marshmallow import fields
@@ -35,11 +28,16 @@ class Guest(db.Model):
 
     def __init__(self, email):
         self.email = email
+    
+    def __repr__(self):
+        return 'Guest %r>' % (self.email)
 
 
-class GuestSchema(ma.ModelSchema):
+class GuestSchema(ma.Schema):
     class Meta:
         model = Guest
+
+guest_schema = GuestSchema()
 
 
 class Subitem(db.Model):
@@ -55,7 +53,7 @@ class Subitem(db.Model):
         self.user_id = user_id
 
 
-class SubitemSchema(ma.ModelSchema):
+class SubitemSchema(ma.Schema):
     class Meta:
         model = Subitem
 
@@ -85,7 +83,7 @@ class Item(db.Model):
         return 'Item %r>' % (self.name)
 
 
-class ItemSchema(ma.ModelSchema):
+class ItemSchema(ma.Schema):
     subitems = fields.Nested('SubitemSchema', default=None, many=True)
     class Meta:
         model = Item
@@ -144,7 +142,7 @@ class Event(db.Model):
         return '<Event %r>' % (self.name)
 
 
-class EventSchema(ma.ModelSchema):
+class EventSchema(ma.Schema):
     guests = fields.Nested('GuestSchema', default=None, many=True)
     items = fields.Nested('ItemSchema', default=None, many=True)
     class Meta:
@@ -165,7 +163,7 @@ class Category(db.Model):
             return 'Category %r>' % (self.name)
 
 
-class CategorySchema(ma.ModelSchema):
+class CategorySchema(ma.Schema):
     class Meta:
         model = Category
 
@@ -185,7 +183,7 @@ class Status(db.Model):
             return 'Status %r>' % (self.name)
 
 
-class StatusSchema(ma.ModelSchema):
+class StatusSchema(ma.Schema):
     class Meta:
         model = Status
 

@@ -5,7 +5,7 @@ from flask_security import SQLAlchemyUserDatastore, current_user
 import logging
 
 from flaskproject.utils import get_instance_folder_path
-from flaskproject.cache import cache
+# from flaskproject.cache import cache
 
 from .core import db, ma, mail, moment, scheduler, security
 from .models import User, Role
@@ -25,12 +25,11 @@ def create_app():
                 instance_relative_config=True,
                 template_folder='templates')
 
-    app.config.from_object('flaskproject.settings')
-    app.config.from_pyfile('config.cfg', silent=True)
+    app.config.from_object('flaskproject.settings')    
 
-# logging.basicConfig(format=app.config['LOGGING_FORMAT'],filename='logs.log',level=logging.DEBUG)
+    # logging.basicConfig(format=app.config['LOGGING_FORMAT'],filename='logs.log',level=logging.DEBUG)
 
-    cache.init_app(app)
+    # cache.init_app(app)
 
     db.init_app(app)
     ma.init_app(app)
@@ -46,28 +45,28 @@ def create_app():
     app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 
-    @app.errorhandler(403)
-    def page_forbidden(error):
-        app.logger.error('Page forbidden: %s', (request.path, error))
-        return render_template('errors/403.html'), 403
+    # @app.errorhandler(403)
+    # def page_forbidden(error):
+    #     app.logger.error('Page forbidden: %s', (request.path, error))
+    #     return render_template('errors/403.html'), 403
 
 
-    @app.errorhandler(404)
-    def page_not_found(error):
-        app.logger.error('Page not found: %s', (request.path, error))
-        return render_template('errors/404.html'), 404
+    # @app.errorhandler(404)
+    # def page_not_found(error):
+    #     app.logger.error('Page not found: %s', (request.path, error))
+    #     return render_template('errors/404.html'), 404
 
 
-    @app.errorhandler(500)
-    def internal_server_error(error):
-        app.logger.error('Server Error: %s', (error))
-        return render_template('errors/500.html'), 500
+    # @app.errorhandler(500)
+    # def internal_server_error(error):
+    #     app.logger.error('Server Error: %s', (error))
+    #     return render_template('errors/500.html'), 500
 
 
-    @app.errorhandler(Exception)
-    def unhandled_exception(error):
-        app.logger.error('Unhandled Exception: %s', (error))
-        return render_template('errors/500.html'), 500
+    # @app.errorhandler(Exception)
+    # def unhandled_exception(error):
+    #     app.logger.error('Unhandled Exception: %s', (error))
+    #     return render_template('errors/500.html'), 500
 
 
     @app.context_processor
@@ -76,7 +75,6 @@ def create_app():
 
 
     @app.route('/')
-    @cache.cached(300)
     def home():
         return render_template('index.html')
 
