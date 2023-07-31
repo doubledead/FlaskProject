@@ -8,8 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
-venv/
 build/
 develop-eggs/
 dist/
@@ -73,3 +71,12 @@ flaskproject/static/bower_components
 
 # Vagrant
 /.vagrant/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
