@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    flaskproject.users.forms
-    ~~~~~~~~~~~~~~~~~~~~~
-    User forms
-"""
-
 from flask_wtf import Form
 from wtforms import StringField, DateField
 from wtforms import validators

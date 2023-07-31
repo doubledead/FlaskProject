@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    manage
-    ~~~~~~
-    Manager module
-"""
-
 from flask_script import Manager
 from flask import current_app
 
